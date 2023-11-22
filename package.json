@@ -1,13 +1,13 @@
 {
+  "homepage": "https://eliasflorian.github.io/eduRate/",
   "name": "edurate",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://eliasflorian.github.io/eduRate/",
   "scripts": {
-    "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
+    "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
