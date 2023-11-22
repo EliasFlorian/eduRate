@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the EduRate...
+Welcome to the EduRate....
 
 ## Authors
 
