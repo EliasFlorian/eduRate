@@ -7,7 +7,7 @@
 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  padding: 0em 0em 0em 0em;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -33,8 +33,25 @@
   }
 }
 
+@font-face {
+  font-family: "RedHatDisplay";
+  src: local("RedHatDisplay"),
+   url("./fonts/RedHatDisplay-Regular.ttf") format("truetype");
+  font-weight: normal;
+ }
+
+ @font-face {
+  font-family: "RedHatDisplay-Bold";
+  src: local("RedHatDisplay-Bold"),
+   url("./fonts/RedHatDisplay-Bold.ttf") format("truetype");
+  font-weight: bold;
+ }
+
+
+ 
+
 .card {
-  padding: 2em;
+  padding: 1.5 em;
 }
 
 .read-the-docs {
@@ -42,12 +59,16 @@
 }
 
 .ratingAsset {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'RedHatDisplay';
   font-weight: bolder;
   font-size: 120%;
+  color:#18197c;
+  margin-bottom: auto;
 }
 
 h1 {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #18197c
+  font-family: 'RedHatDisplay-Bold';
+  color: #18197c;
 }
+
+
