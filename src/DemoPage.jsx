@@ -5,7 +5,7 @@ import logo from './images/logo.png'
 import FeedbackField from './FeedbackField.jsx'
 import GetQrCode from './qrCode.jsx'
 
-function RatingPage() {
+function DemoPage() {
 
 const [lectureRating, setLectureRating] = useState(0)
   const handleRatingChange = (rating) => {
@@ -46,25 +46,13 @@ const [lectureRating, setLectureRating] = useState(0)
           <img src={logo} class="logo" alt="OEHLogo" />
         </a>
       </div>
-      <h1>Willkommen bei eduRate!</h1>
-      <div class="card">
-      <p class = 'ratingAsset'>Ich habe viel Neues erfahren.</p>
-      <Rating rating={rating1} onRatingChange={handleRatingChange1} />
-      <p class = 'ratingAsset'>Die Inhalte wurden verständlich vermittelt.</p>
-      <Rating rating={rating2} onRatingChange={handleRatingChange2} />
-      <p class = 'ratingAsset'>Der/die Vortragende wirkt kompetent.</p>
-      <Rating rating={rating3} onRatingChange={handleRatingChange3} />
-      <p class = 'ratingAsset'>Ich weiß jetzt, wie ich mein Wunschstudium finde.</p>
-      <Rating rating={rating4} onRatingChange={handleRatingChange4} />
-      <p class = 'ratingAsset'>Die Präsentationsfolien waren ansprechend gestaltet.</p>
-      <Rating rating={rating5} onRatingChange={handleRatingChange5} />
+      <h1>Scanne den QR Code um Feedback zu geben!</h1>
       <div>
-        <FeedbackField> </FeedbackField>
-      </div>
+        <GetQrCode url='http://localhost:5173/eduRate/RatingPage'></GetQrCode>
       </div>
     </>
   )
 
 }
 
-export default RatingPage;
+export default DemoPage;
