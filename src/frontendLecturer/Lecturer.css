@@ -1,0 +1,94 @@
+@font-face {
+    font-family: "RedHatDisplay-Bold";
+    src: local("RedHatDisplay-Bold"),
+     url("./fonts/RedHatDisplay-Bold.ttf") format("truetype");
+    font-weight: bold;
+   }
+
+@font-face {
+    font-family: "RedHatDisplay-Regular";
+    src: local("RedHatDisplay-Regular"),
+     url("./fonts/RedHatDisplay-Regular.ttf") format("truetype");
+    font-weight: normal;
+   }
+
+.login-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nav-bar {
+    background-color: #18197c;
+    padding: 10px 20px 10px 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  .logoweiss {
+    height: 3em;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-form-container {
+    width: fit-content;
+    flex-grow: 0.5;
+    display: inline;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-form {
+
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    padding: 1em;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    width: 80%;
+    font-family: "RedHatDisplay-Bold";
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #9fd0c3;
+    color:  #18197c;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "RedHatDisplay-Bold";
+  }
+  
+  button:hover {
+    background-color: #9fd0c3;
+  }
+
+  .eduRate {
+    font-family: "RedHatDisplay-Bold";
+    padding: 0.3em;
+    font-size: 3em;
+    color: #18197c;
+  }
