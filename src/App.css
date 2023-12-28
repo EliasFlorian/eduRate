@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 3rem auto;
+  padding: 1.5rem;
   text-align: center;
 }
 
@@ -48,9 +48,7 @@
  }
 
 
- 
-
-.card {
+.cards {
   padding: 1.5 em;
 }
 
@@ -66,9 +64,12 @@
   margin-bottom: auto;
 }
 
-h1 {
+.heading {
   font-family: 'RedHatDisplay-Bold';
   color: #18197c;
+  font-size: 300%;
+  font-weight: bold;
+  margin: 1rem 0rem 2rem 0rem;
 }
 
 

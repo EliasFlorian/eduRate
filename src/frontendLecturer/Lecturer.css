@@ -19,7 +19,7 @@
   }
 
 .landing-page {
-    height: 0;
+    height: 5em;
     display: flex;
     flex-direction: column;
   }
@@ -109,12 +109,11 @@
  .rootpage {
     max-width: 1280px;
     margin: 0 0 auto auto;
-    padding: 2rem;
-    text-align: right;
+    text-align: left;
     align-self: baseline;
 }
 
 .table {
   width: 100%;
-  
+
 }

@@ -6,12 +6,6 @@ import FeedbackField from './FeedbackField.jsx'
 
 
 function RatingPage() {
-
-const [lectureRating, setLectureRating] = useState(0)
-  const handleRatingChange = (rating) => {
-    setLectureRating(rating);
-  };
-
   const [rating1, setRating1] = useState(0);
   const [rating2, setRating2] = useState(0);
   const [rating3, setRating3] = useState(0);
@@ -46,17 +40,17 @@ const [lectureRating, setLectureRating] = useState(0)
           <img src={logo} class="logo" alt="OEHLogo" />
         </a>
       </div>
-      <h1>Willkommen bei eduRate!</h1>
-      <div class="card">
-      <p class = 'ratingAsset'>Ich habe viel Neues erfahren.</p>
+      <p className='heading'>Willkommen bei eduRate!</p>
+      <div className='cards'>
+      <p className = 'ratingAsset'>Ich habe viel Neues erfahren.</p>
       <Rating rating={rating1} onRatingChange={handleRatingChange1} />
-      <p class = 'ratingAsset'>Die Inhalte wurden verständlich vermittelt.</p>
+      <p className = 'ratingAsset'>Die Inhalte wurden verständlich vermittelt.</p>
       <Rating rating={rating2} onRatingChange={handleRatingChange2} />
-      <p class = 'ratingAsset'>Der/die Vortragende wirkt kompetent.</p>
+      <p className = 'ratingAsset'>Der/die Vortragende wirkt kompetent.</p>
       <Rating rating={rating3} onRatingChange={handleRatingChange3} />
-      <p class = 'ratingAsset'>Ich weiß jetzt, wie ich mein Wunschstudium finde.</p>
+      <p className = 'ratingAsset'>Ich weiß jetzt, wie ich mein Wunschstudium finde.</p>
       <Rating rating={rating4} onRatingChange={handleRatingChange4} />
-      <p class = 'ratingAsset'>Die Präsentationsfolien waren ansprechend gestaltet.</p>
+      <p className = 'ratingAsset'>Die Präsentationsfolien waren ansprechend gestaltet.</p>
       <Rating rating={rating5} onRatingChange={handleRatingChange5} />
       <div>
         <FeedbackField> </FeedbackField>
