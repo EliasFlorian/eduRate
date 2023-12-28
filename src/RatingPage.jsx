@@ -3,8 +3,6 @@ import './App.css'
 import Rating from './Rating.jsx'
 import logo from './images/logo.png'
 import FeedbackField from './FeedbackField.jsx'
-// Import our custom CSS
-import {Button} from 'react-bootstrap'
 
 
 function RatingPage() {
