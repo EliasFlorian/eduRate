@@ -117,3 +117,21 @@
   width: 100%;
 
 }
+
+.form-group input{
+  margin-bottom: 10px;
+  padding:0%;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  width: 80%;
+  font-family: "RedHatDisplay-Bold";
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100%;
+}
