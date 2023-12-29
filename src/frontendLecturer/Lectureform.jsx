@@ -72,7 +72,7 @@ function Lectureform({onFormSubmit}) {
         />
       </div>
 
-      <button type="submit">Neuen Eintrag erstellen</button>
+      <button type="submit" onClick={handleSubmit}>Neuen Eintrag erstellen</button>
     </form>
   );
 }

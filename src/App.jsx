@@ -5,6 +5,7 @@ import SubmittedPage from './SubmittedPage.jsx';
 import NoPage from './NoPage.jsx';
 import Login from './frontendLecturer/Login.jsx';
 import Landing from './frontendLecturer/Landing.jsx';
+import Feedbackview from './frontendLecturer/Feedbackview.jsx';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route path='*' element = {<NoPage />} />
       <Route path='/eduRate/login' element = {<Login />} />
       <Route path='/eduRate/landing' element = {<Landing />} />
+      <Route path='eduRate/feedbackview' element = {<Feedbackview/>} />
     </Routes>
     </BrowserRouter>
   </div>)

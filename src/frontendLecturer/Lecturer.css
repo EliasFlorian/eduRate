@@ -115,7 +115,20 @@
 
 .table {
   width: 100%;
+  margin-top: 3em;
 
+}
+
+.tableview {
+  font-family: 'RedHatDisplay-Bold';
+  font-weight: lighter;
+}
+
+.tablehead {
+  font-family: 'RedHatDisplay-Bold';
+  font-size: x-large;
+  color: #18197c;
+  background-color: #9fd0c3;
 }
 
 .form-group input{

@@ -33,6 +33,41 @@ function RatingPage() {
     setRating5(rating);
   };
 
+  function handleSubmission() {
+    console.log("Thanks fo the Submission!");
+
+    window.location.href = '/eduRate/SubmittedPage';
+  }
+
+
+  /*const handleSubmission = async () => {
+    const ratingsData = {
+      rating1,
+      rating2,
+      rating3,
+      rating4,
+      rating5
+    };
+  
+    try {
+      const response = await fetch('BACKEND_ENDPOINT', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(ratingsData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+  
+      alert('Ratings submitted successfully!');
+    } catch (error) {
+      console.error('Failed to submit ratings:', error);
+    }
+  };*/
+
   return (
     <>
       <div>
@@ -53,8 +88,11 @@ function RatingPage() {
       <p className = 'ratingAsset'>Die Präsentationsfolien waren ansprechend gestaltet.</p>
       <Rating rating={rating5} onRatingChange={handleRatingChange5} />
       <div>
-        <FeedbackField> </FeedbackField>
-      </div>
+<FeedbackField></FeedbackField>        
+     </div>
+      <div style={{marginTop: '2em'}}><button id='submitButton'onClick={handleSubmission}>Feedback senden</button>
+            </div>
+      
       </div>
     </>
   )
