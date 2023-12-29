@@ -1,7 +1,10 @@
 import express, { response } from "express";
-import { PORT, mongoDBURL } from "./config.js";
+import { PORT } from "./config.js";
 import mongoose from "mongoose";
 import { Feedback } from "./models/feedbackModel.js";
+
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
@@ -36,7 +39,7 @@ app.post("/feedback", async (req, res) => {
 });
 
 mongoose
-  .connect(mongoDBURL)
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("App connected to database");
 
