@@ -20,6 +20,7 @@ function Lectureform({onFormSubmit}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Handle form submission logic...
+    console.log(formData);
 
     // Call the callback function after successful submission
     onFormSubmit();
@@ -34,6 +35,7 @@ function Lectureform({onFormSubmit}) {
           type="text"
           id="ort"
           name="ort"
+          required
           value={formData.ort}
           onChange={handleChange}
         />
@@ -45,6 +47,7 @@ function Lectureform({onFormSubmit}) {
           type="date"
           id="datum"
           name="datum"
+          required
           value={formData.datum}
           onChange={handleChange}
         />
@@ -71,7 +74,6 @@ function Lectureform({onFormSubmit}) {
           onChange={handleChange}
         />
       </div>
-
       <button type="submit" onClick={handleSubmit}>Neuen Eintrag erstellen</button>
     </form>
   );

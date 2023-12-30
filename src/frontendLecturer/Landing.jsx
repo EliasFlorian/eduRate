@@ -23,7 +23,8 @@ function Landing() {
         <div className="landing-page">
         {/* Navigation Bar */}
         <nav className="nav-bar">
-        <img src={logoweiss} class='logoweiss' alt="OEHLogo" />
+        <img src={logoweiss} className='logoweiss' alt="OEHLogo" />
+        <button type="button" className="logout-button">Logout</button>
         </nav>
         {!showForm && (
                     <button type="button" id='new-entry' onClick={handleNewEntry}>Neuen Vortrag anlegen</button>

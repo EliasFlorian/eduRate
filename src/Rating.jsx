@@ -30,7 +30,7 @@ const inputStyle = {
         style={{width: '100%'}}
       />
        </div>
-      <p class='ratingText'>{rating} von 10</p>
+      <p className='ratingText'>{rating} von 10</p>
     </div>
   );
 }

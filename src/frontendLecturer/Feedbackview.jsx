@@ -9,7 +9,8 @@ function Feedbackview () {
       <div className="feedback-view">
         {/* Navigation Bar */}
         <nav className="nav-bar">
-        <img src={logoweiss} class='logoweiss' alt="OEHLogo" />
+        <img src={logoweiss} className='logoweiss' alt="OEHLogo" />
+        <button type="button" className="logout-button">Logout</button>
         </nav>
         <Table className='table'>
       <thead className="tablehead">

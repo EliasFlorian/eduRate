@@ -7,7 +7,7 @@ function Login () {
     <div className="login-page">
       {/* Navigation Bar */}
       <nav className="nav-bar">
-      <img src={logoweiss} class='logoweiss' alt="OEHLogo" />
+      <img src={logoweiss} className='logoweiss' alt="OEHLogo" />
       </nav>
       
       {/* Login Form */}
