@@ -2,6 +2,7 @@ import React from "react";
 import './Lecturer.css';
 import logoweiss from '../images/logoweiss.png';
 import { Table } from 'react-bootstrap';
+import Logout from "./Logout";
 
 
 function Feedbackview () {
@@ -10,7 +11,7 @@ function Feedbackview () {
         {/* Navigation Bar */}
         <nav className="nav-bar">
         <img src={logoweiss} className='logoweiss' alt="OEHLogo" />
-        <button type="button" className="logout-button">Logout</button>
+        <Logout></Logout>
         </nav>
         <Table className='table'>
       <thead className="tablehead">
