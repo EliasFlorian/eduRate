@@ -14,17 +14,17 @@ app.use(bodyParser.json());
 
 const users = [
   { id: 1, username: 'user', password: 'password' },
-  { id: 2, username: 'lisa', password: 'falter'}
+  { id: 2, username: 'lisa', password: 'falter' }
 ];
 
 const lectures = [
-  { id: 1, ort: "HTL", date: "2019-01-01", start: "13::55::26", end: "17::55::26"},
-  { id: 2, ort: "Gymnasium", date: "2023-04-06", start: "13::55::26", end: "17::55::26"}
+  { id: 1, ort: "HTL", date: "2019-01-01", start: "13::55::26", end: "17::55::26" },
+  { id: 2, ort: "Gymnasium", date: "2023-04-06", start: "13::55::26", end: "17::55::26" }
 ];
 
 const feedback = [
   { lectureID: 1, rankingCategory1: 3, rankingCategory2: 4, rankingCategory3: 3, rankingCategory4: 3, rankingCategory5: 3, feedback: 'cool' },
-  { lectureID: 2, rankingCategory1: 5, rankingCategory2: 6, rankingCategory3: 3, rankingCategory4: 2, rankingCategory5: 10, feedback: 'cool' }
+  { lectureID: 1, rankingCategory1: 5, rankingCategory2: 6, rankingCategory3: 3, rankingCategory4: 2, rankingCategory5: 10, feedback: 'cool' }
 ]
 
 const JWT_SECRET = '1234'; //sollte ein sicherer Key sein!
@@ -66,9 +66,11 @@ app.post("/lecture", [
     // TODO: add to database, get lecturer through session management
     lecture["id"] = lectures.length + 1;
     lectures.push(lecture);
+    console.log(lectures);
     return res.send(lectures);
   }
 
+  console.log(req.body);
   res.send({ errors: result.array() });
 });
 
@@ -90,15 +92,15 @@ app.post("/feedback", [
     feedback.push(req.body);
     return res.send(feedback);
   }
-
+  
   res.send({ errors: result.array() });
 });
 
 app.get("/feedback", (req, res) => {
   // get feedback list from database
   const lectureID = req.query.lectureID;
-  const lecture = lectures.find(l => l.id == lectureID);
-  res.json(lecture);
+  const result = feedback.filter(function(p) { return p.lectureID == lectureID })
+  res.json(result);
 });
 
 const PORT = process.env.PORT || 3000;
