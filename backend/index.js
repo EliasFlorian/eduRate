@@ -1,4 +1,4 @@
-import express, { response } from "express";
+/*import express, { response } from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import { Feedback } from "./models/feedbackModel.js";
@@ -47,3 +47,31 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+*/
+
+import bodyParser from 'body-parser';
+import express from 'express';
+import router from './routes/handler.js'
+
+
+const app = express();
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+app.use('/', router);
+
+const PORT = process.env.PORT || 3000;
+
+const lectures = {};
+
+app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT}`);
+});
+
+/*
+POST Feedback
+
+/ POST Ort Datum Start ende
+/ GET liste mit vorträgen (session)
+/ GET feedback
+/ Login endpoint
+*/
