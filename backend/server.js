@@ -22,6 +22,11 @@ const lectures = [
   { id: 2, ort: "Gymnasium", date: "2023-04-06", start: "13::55::26", end: "17::55::26"}
 ];
 
+const feedback = [
+  { lectureID: 1, rankingCategory1: 3, rankingCategory2: 4, rankingCategory3: 3, rankingCategory4: 3, rankingCategory5: 3, feedback: 'cool' },
+  { lectureID: 2, rankingCategory1: 5, rankingCategory2: 6, rankingCategory3: 3, rankingCategory4: 2, rankingCategory5: 10, feedback: 'cool' }
+]
+
 const JWT_SECRET = '1234'; //sollte ein sicherer Key sein!
 
 app.post('/login', (req, res) => {
@@ -68,15 +73,32 @@ app.post("/lecture", [
 });
 
 app.post("/feedback", [
-  check('rankingCategory1').isInt({ min: 0, max: 5 }),
-  check('rankingCategory2').notEmpty(),
-  check('rankingCategory3').notEmpty(),
-  check('rankingCategory4').notEmpty(),
-  check('rankingCategory5').notEmpty(),
-  check('rankingCategory6').notEmpty(),
+  check('lectureID').notEmpty(),
+  check('rankingCategory1').isInt({ min: 0, max: 10 }),
+  check('rankingCategory2').isInt({ min: 0, max: 10 }),
+  check('rankingCategory3').isInt({ min: 0, max: 10 }),
+  check('rankingCategory4').isInt({ min: 0, max: 10 }),
+  check('rankingCategory5').isInt({ min: 0, max: 10 }),
+  check('feedback').notEmpty()
 ], 
 (req, res) => {
+  const result = validationResult(req);
 
+  // check if form is valid
+  if (result.isEmpty()) {
+    // TODO: feedback to database
+    feedback.push(req.body);
+    return res.send(feedback);
+  }
+
+  res.send({ errors: result.array() });
+});
+
+app.get("/feedback", (req, res) => {
+  // get feedback list from database
+  const lectureID = req.query.lectureID;
+  const lecture = lectures.find(l => l.id == lectureID);
+  res.json(lecture);
 });
 
 const PORT = process.env.PORT || 3000;
