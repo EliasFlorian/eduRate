@@ -2,7 +2,8 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import validator from 'express-validator'
+import validator from 'express-validator';
+import { jwtDecode } from "jwt-decode";
 
 const app = express();
 const { check, validationResult } = validator;
@@ -47,8 +48,18 @@ app.post('/login', (req, res) => {
 
 app.get("/lectureList", (req, res) => {
     // check token?
-    // get lecture list from database
-    res.json(lectures);
+  try {
+    const tok = jwtDecode(req.headers.authorization);
+    const userID = tok.id;
+    // should look fort the lecturerID instead of lecture ID, but field is not yet implemented
+    const result = lectures.filter(function(l) { return l.id == userID });
+    res.json(result);
+  }
+  catch(err) {
+    console.log(err);
+    res.status(401);
+    res.send('invalid token!');
+  }
 });
 
 app.post("/lecture", [
