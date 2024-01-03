@@ -23,9 +23,9 @@ const lectures = [
 ];
 
 const feedback = [
-  { lectureID: 1, rankingCategory1: 3, rankingCategory2: 4, rankingCategory3: 3, rankingCategory4: 3, rankingCategory5: 3, feedback: 'cool' },
-  { lectureID: 2, rankingCategory1: 5, rankingCategory2: 6, rankingCategory3: 3, rankingCategory4: 2, rankingCategory5: 10, feedback: 'cool' }
-]
+  { lectureID: 1, rankingCategory1: 3, rankingCategory2: 4, rankingCategory3: 3, rankingCategory4: 3, rankingCategory5: 3, feedback: "cool" },
+  { lectureID: 2, rankingCategory1: 5, rankingCategory2: 6, rankingCategory3: 3, rankingCategory4: 2, rankingCategory5: 10, feedback: "nice" }
+];
 
 const JWT_SECRET = '1234'; //sollte ein sicherer Key sein!
 
@@ -45,7 +45,7 @@ app.post('/login', (req, res) => {
   }
 });
 
-app.get("/lectureList", (req, res) => {
+app.get('/lectureList', (req, res) => {
     // check token?
     // get lecture list from database
     res.json(lectures);
@@ -94,12 +94,28 @@ app.post("/feedback", [
   res.send({ errors: result.array() });
 });
 
-app.get("/feedback", (req, res) => {
+/*app.get("/feedback", (req, res) => {
   // get feedback list from database
   const lectureID = req.query.lectureID;
-  const lecture = lectures.find(l => l.id == lectureID);
+  const lecture = lectures.find(l => l.lectureID == lectureID);
   res.json(lecture);
+});*/
+
+app.get("/feedback", (req, res) => {
+  const lectureID = req.query.lectureID;
+
+  if (!lectureID) {
+    res.status(400).send("lectureID query parameter is required");
+    return;
+  }
+  const lectureFeedback = feedback.find(f => f.lectureID === Number(lectureID));
+  if (lectureFeedback) {
+    res.json(lectureFeedback);
+  } else {
+    res.status(404).send("Feedback not found for the provided lectureID");
+  }
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
