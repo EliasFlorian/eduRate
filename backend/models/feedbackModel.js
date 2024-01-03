@@ -1,10 +1,38 @@
 import mongoose from "mongoose";
 
-const { Schema } = mongoose;
-
-const testSchema = new Schema({
-  title: String, // String is shorthand for {type: String}
-  author: String,
+const FeedbackSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 });
 
-export const Feedback = mongoose.model("Feedback", testSchema);
+const lectureSchema = new mongoose.Schema(
+  {
+    id: Number,
+    ort: String,
+    date: String,
+    start: String,
+    end: String,
+  },
+  { timestamps: true }
+);
+
+const feedbackSchema = new mongoose.Schema({
+  lectureID: {
+    type: mongoose.Schema.Types.Number,
+    ref: "Lecture",
+    required: true,
+  },
+  rankingCategory1: Number,
+  rankingCategory2: Number,
+  rankingCategory3: Number,
+  rankingCategory4: Number,
+  rankingCategory5: Number,
+  feedback: String,
+});
+
+const Lecture = mongoose.model("Lecture", lectureSchema, "feedback-data");
+const Feedback = mongoose.model("Feedback", feedbackSchema, "feedback-data");
+
+export { Lecture, Feedback };
+
+//export default mongoose.model("Feedback", FeedbackSchema, "feedback-data");
