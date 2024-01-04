@@ -14,7 +14,12 @@ function LectureTable() {
   useEffect(() => {
     const fetchLectures = async () => {
       try {
-        const response = await fetch('http://localhost:3000/lectureList');
+        const response = await fetch('http://localhost:3000/lectureList',
+        { method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }});
         if (!response.ok) {
           throw new Error(`Error! Status: ${response.status}`);
         }
