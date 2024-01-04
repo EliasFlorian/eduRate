@@ -11,20 +11,23 @@ import { Lecture, Feedback } from "./models/feedbackModel.js";
 
 //---------------------------
 
-import router from "./routes/handler.js";
+//import router from "./routes/handler.js";
 import mongoose from "mongoose";
 
 import dotenv from "dotenv";
+
+const PORT = process.env.PORT || 3000;
+const app = express();
+app.use(cors());
 dotenv.config({ path: ".env.local" });
 
-const app = express();
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use("/", router);
+//app.use("/", router);
 
 
 const { check, validationResult } = validator;
-app.use(cors());
 app.use(express.json());
 
 const users = [
@@ -224,7 +227,7 @@ app.get("/feedback", (req, res) => {
   res.json(result);
 });
 
-// const PORT = process.env.PORT || 3000;
+
 // app.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
 // });
