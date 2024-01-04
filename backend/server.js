@@ -2,7 +2,8 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import validator from 'express-validator'
+import validator from 'express-validator';
+import { jwtDecode } from "jwt-decode";
 
 const app = express();
 const { check, validationResult } = validator;
@@ -14,12 +15,12 @@ app.use(bodyParser.json());
 
 const users = [
   { id: 1, username: 'user', password: 'password' },
-  { id: 2, username: 'lisa', password: 'falter'}
+  { id: 2, username: 'lisa', password: 'falter' }
 ];
 
 const lectures = [
-  { id: 1, ort: "HTL", date: "2019-01-01", start: "13::55::26", end: "17::55::26"},
-  { id: 2, ort: "Gymnasium", date: "2023-04-06", start: "13::55::26", end: "17::55::26"}
+  { id: 1, ort: "HTL", date: "2019-01-01", start: "13::55::26", end: "17::55::26" },
+  { id: 2, ort: "Gymnasium", date: "2023-04-06", start: "13::55::26", end: "17::55::26" }
 ];
 
 const feedback = [
@@ -47,8 +48,18 @@ app.post('/login', (req, res) => {
 
 app.get('/lectureList', (req, res) => {
     // check token?
-    // get lecture list from database
-    res.json(lectures);
+  try {
+    const tok = jwtDecode(req.headers.authorization);
+    const userID = tok.id;
+    // should look fort the lecturerID instead of lecture ID, but field is not yet implemented
+    const result = lectures.filter(function(l) { return l.id == userID });
+    res.json(result);
+  }
+  catch(err) {
+    console.log(err);
+    res.status(401);
+    res.send('invalid token!');
+  }
 });
 
 app.post("/lecture", [
@@ -66,9 +77,11 @@ app.post("/lecture", [
     // TODO: add to database, get lecturer through session management
     lecture["id"] = lectures.length + 1;
     lectures.push(lecture);
+    console.log(lectures);
     return res.send(lectures);
   }
 
+  console.log(req.body);
   res.send({ errors: result.array() });
 });
 
@@ -90,30 +103,15 @@ app.post("/feedback", [
     feedback.push(req.body);
     return res.send(feedback);
   }
-
+  
   res.send({ errors: result.array() });
 });
 
-/*app.get("/feedback", (req, res) => {
+app.get("/feedback", (req, res) => {
   // get feedback list from database
   const lectureID = req.query.lectureID;
-  const lecture = lectures.find(l => l.lectureID == lectureID);
-  res.json(lecture);
-});*/
-
-app.get("/feedback", (req, res) => {
-  const lectureID = req.query.lectureID;
-
-  if (!lectureID) {
-    res.status(400).send("lectureID query parameter is required");
-    return;
-  }
-  const lectureFeedback = feedback.find(f => f.lectureID === Number(lectureID));
-  if (lectureFeedback) {
-    res.json(lectureFeedback);
-  } else {
-    res.status(404).send("Feedback not found for the provided lectureID");
-  }
+  const result = feedback.filter(function(p) { return p.lectureID == lectureID })
+  res.json(result);
 });
 
 
