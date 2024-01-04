@@ -5,6 +5,7 @@ import { Table } from 'react-bootstrap';
 import Logout from "./Logout";
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,6 +13,10 @@ function Feedbackview () {
   const [feedback, setFeedback] = useState(null);
   const [error, setError] = useState(null);
   const { lectureID } = useParams();
+  let navigate = useNavigate();
+  const handleBack = () => {
+    navigate('/eduRate/landing');
+};
  
 
   const categories = [
@@ -87,6 +92,7 @@ function Feedbackview () {
           </tr>
         </tbody>
 </Table>
+<button className='logout-button' onClick={handleBack}>Zurück</button>
  </div>     
     )
 }
