@@ -12,6 +12,7 @@ const lectureSchema = new mongoose.Schema(
     date: String,
     start: String,
     end: String,
+    lecturer: String
   },
   { timestamps: true }
 );

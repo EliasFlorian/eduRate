@@ -123,7 +123,7 @@ app.post("/register", async (req, res) => {
 // Endpoint to create a new lecture
 app.post("/lecture", async (req, res) => {
   // Extract the lecture details from the request body
-  const { ort, date, start, end } = req.body;
+  const { ort, date, start, end, lecturer } = req.body;
 
   try {
     // Create a new lecture document
@@ -132,6 +132,7 @@ app.post("/lecture", async (req, res) => {
       date,
       start,
       end,
+      lecturer
       // Add other fields as necessary
     });
 
@@ -150,14 +151,18 @@ app.post("/lecture", async (req, res) => {
 //========================================================================================================================================================
 //========================================================================================================================================================
 
-app.get("/lectureList", (req, res) => {
+app.get("/lectureList", async (req, res) => {
   // check token?
   try {
     const tok = jwtDecode(req.headers.authorization);
     const userID = tok.id;
+    const lecturer = tok.username;
+
+    let lecture = await Lecture.find();
+    console.log(lecture);
     // should look fort the lecturerID instead of lecture ID, but field is not yet implemented
-    const result = lectures.filter(function (l) {
-      return l.id == userID;
+    const result = lecture.filter(function (l) {
+      return l.lecturer == lecturer;
     });
     res.json(result);
   } catch (err) {
@@ -166,7 +171,7 @@ app.get("/lectureList", (req, res) => {
     res.send("invalid token!");
   }
 });
-
+/*
 app.post(
   "/lecture",
   [
@@ -192,7 +197,7 @@ app.post(
     res.send({ errors: result.array() });
   }
 );
-
+*/
 app.post(
   "/feedback",
   [
