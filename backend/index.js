@@ -49,23 +49,39 @@ mongoose
   });
 */
 
-import bodyParser from 'body-parser';
-import express from 'express';
-import router from './routes/handler.js'
+// import bodyParser from "body-parser";
+// import express from "express";
+// import router from "./routes/handler.js";
+// import mongoose from "mongoose";
 
+// import dotenv from "dotenv";
+// dotenv.config({ path: ".env.local" });
 
-const app = express();
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
-app.use('/', router);
+// const app = express();
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+// app.use("/", router);
 
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
 
-const lectures = {};
+// const lectures = {};
 
-app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
-});
+// mongoose
+//   .connect(process.env.MONGODB_URI)
+//   .then(() => {
+//     console.log("App connected to database");
+
+//     app.listen(PORT, () => {
+//       console.log(`App is listening to port: ${PORT}`);
+//     });
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+// app.listen(PORT, () => {
+//   console.log(`Server listening on ${PORT}`);
+// });
 
 /*
 POST Feedback

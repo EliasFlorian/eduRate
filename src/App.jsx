@@ -34,7 +34,7 @@ function AppRoutes() {
       <Route path='*' element={<NoPage />} />
       <Route path='/eduRate/login' element={<Login onLoginSuccess={handleLoginSuccess} />} />
       <Route path='/eduRate/landing' element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-      <Route path='/eduRate/feedbackview' element={<ProtectedRoute><Feedbackview /></ProtectedRoute>} />
+      <Route path='/eduRate/feedbackview/:lectureID' element={<ProtectedRoute><Feedbackview /></ProtectedRoute>} />
     </Routes>
   );
 }

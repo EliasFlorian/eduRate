@@ -1,7 +1,48 @@
-import React from 'react';
 import { Table } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 function LectureTable() {
+  const [lectures, setLectures] = useState([]);
+  const [error, setError] = useState(null);
+
+  let navigate = useNavigate();
+  const handleFeedbackview= (lectureID) => {
+    navigate(`/eduRate/feedbackview/${lectureID}`);
+  }
+
+  useEffect(() => {
+    const fetchLectures = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/lectureList',
+        { method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }});
+        if (!response.ok) {
+          throw new Error(`Error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setLectures(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchLectures();
+  }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!lectures.length) {
+    return <div>Loading lectures...</div>;
+  }
+
+ 
+
     return (
       <Table className='table'>
         <thead>
@@ -14,27 +55,22 @@ function LectureTable() {
           </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>1</td>
-          <td>HTL Wien Ottakring</td>
-          <td>20.12.2023</td>
-          <td>12:30-14:00</td>
-          <td><button className='viewFeedback'onClick={handleFeedbackview}>Feedback ansehen</button></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>AHS Wien</td>
-          <td>13.12.2023</td>
-          <td>14:50-16:00</td>
-          <td><button className='viewFeedback'onClick={handleFeedbackview}>Feedback ansehen</button></td>
-        </tr>
+        {lectures.map((lecture) => (
+    <tr key={lecture.id}>
+      <td>{lecture.id}</td>
+      <td>{lecture.ort}</td>
+      <td>{lecture.date}</td>
+      <td>{lecture.start} - {lecture.end}</td>
+      <td>
+        <button className='viewFeedback' onClick={() => handleFeedbackview(lecture.id)}>
+          Feedback ansehen
+        </button>
+      </td>
+    </tr>
+  ))}
       </tbody>
       </Table>
     );
-  }
-
-  function handleFeedbackview() {
-    window.location.href = "/eduRate/feedbackview";
   }
 
   export default LectureTable;
