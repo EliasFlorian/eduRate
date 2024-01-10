@@ -7,11 +7,11 @@ const FeedbackSchema = new mongoose.Schema({
 
 const lectureSchema = new mongoose.Schema(
   {
-    id: Number,
+    //id: Number,
     ort: String,
-    date: String,
-    start: String,
-    end: String,
+    datum: String,
+    startzeit: String,
+    endzeit: String,
     lecturer: String
   },
   { timestamps: true }
