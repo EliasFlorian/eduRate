@@ -123,15 +123,19 @@ app.post("/register", async (req, res) => {
 // Endpoint to create a new lecture
 app.post("/lecture", async (req, res) => {
   // Extract the lecture details from the request body
-  const { ort, date, start, end } = req.body;
+  const { ort, datum, startzeit, endzeit } = req.body.formData;
+  console.log(req.body.formData);
+  const tok = jwtDecode(req.headers.authorization);
+    const lecturer = tok.username;
 
   try {
     // Create a new lecture document
     const lecture = new Lecture({
       ort,
-      date,
-      start,
-      end,
+      datum,
+      startzeit,
+      endzeit,
+      lecturer
       // Add other fields as necessary
     });
 
@@ -150,15 +154,20 @@ app.post("/lecture", async (req, res) => {
 //========================================================================================================================================================
 //========================================================================================================================================================
 
-app.get("/lectureList", (req, res) => {
+app.get("/lectureList", async (req, res) => {
   // check token?
   try {
     const tok = jwtDecode(req.headers.authorization);
     const userID = tok.id;
+    const lecturer = tok.username;
+
+    let lecture = await Lecture.find();
+    //console.log(lecture);
     // should look fort the lecturerID instead of lecture ID, but field is not yet implemented
-    const result = lectures.filter(function (l) {
-      return l.id == userID;
+    const result = lecture.filter(function (l) {
+      return l.lecturer == lecturer;
     });
+    //console.log(result);
     res.json(result);
   } catch (err) {
     console.log(err);
@@ -166,7 +175,7 @@ app.get("/lectureList", (req, res) => {
     res.send("invalid token!");
   }
 });
-
+/*
 app.post(
   "/lecture",
   [
@@ -192,7 +201,7 @@ app.post(
     res.send({ errors: result.array() });
   }
 );
-
+*/
 app.post(
   "/feedback",
   [
@@ -209,7 +218,7 @@ app.post(
 
     // check if form is valid
     if (result.isEmpty()) {
-      // TODO: feedback to database
+      üp// TODO: feedback to database
       feedback.push(req.body);
       return res.send(feedback);
     }

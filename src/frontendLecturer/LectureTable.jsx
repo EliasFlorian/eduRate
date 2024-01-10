@@ -60,7 +60,7 @@ function LectureTable() {
       <td>{lecture.id}</td>
       <td>{lecture.ort}</td>
       <td>{lecture.date}</td>
-      <td>{lecture.start} - {lecture.end}</td>
+      <td>{lecture.startzeit} - {lecture.endzeit}</td>
       <td>
         <button className='viewFeedback' onClick={() => handleFeedbackview(lecture.id)}>
           Feedback ansehen

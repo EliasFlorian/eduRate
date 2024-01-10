@@ -17,10 +17,19 @@ function Lectureform({onFormSubmit}) {
   };
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Handle form submission logic...
     console.log(formData);
+
+    const response = await fetch('http://localhost:3000/lecture', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({ formData }),
+    });
 
     // Call the callback function after successful submission
     onFormSubmit();
