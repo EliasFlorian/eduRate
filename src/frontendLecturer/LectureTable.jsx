@@ -7,8 +7,11 @@ function LectureTable() {
   const [error, setError] = useState(null);
 
   let navigate = useNavigate();
-  const handleFeedbackview= (lectureID) => {
+  const handleFeedbackview = (lectureID) => {
     navigate(`/eduRate/feedbackview/${lectureID}`);
+  }
+  const handleQRCode = (lectureID) => {
+    navigate(`/eduRate/qrCode/${lectureID}`);
   }
 
   useEffect(() => {
@@ -41,7 +44,15 @@ function LectureTable() {
     return <div>Loading lectures...</div>;
   }
 
- 
+  const formatDate = (datum) => {
+    if (!datum || typeof datum !== 'string') {
+        return 'Datum nicht verfügbar';
+    }
+
+    const parts = datum.split('-');
+    return `${parts[2]}.${parts[1]}.${parts[0]}`;
+};
+
 
     return (
       <Table className='table'>
@@ -52,6 +63,7 @@ function LectureTable() {
             <th>Datum</th>
             <th>Uhrzeit</th>
             <th>Feedback</th>
+            <th>QR Code</th>
           </tr>
         </thead>
         <tbody>
@@ -59,12 +71,13 @@ function LectureTable() {
     <tr key={lecture.id}>
       <td>{lecture.id}</td>
       <td>{lecture.ort}</td>
-      <td>{lecture.date}</td>
+      <td>{formatDate(lecture.datum)}</td>
       <td>{lecture.startzeit} - {lecture.endzeit}</td>
       <td>
         <button className='viewFeedback' onClick={() => handleFeedbackview(lecture.id)}>
           Feedback ansehen
-        </button>
+        </button> </td> 
+      <td> <button className='viewFeedback' onClick={() => handleQRCode(lecture.id)}>QR Code anzeigen</button>
       </td>
     </tr>
   ))}

@@ -8,6 +8,7 @@ import Login from './frontendLecturer/Login.jsx';
 import Landing from './frontendLecturer/Landing.jsx';
 import Feedbackview from './frontendLecturer/Feedbackview.jsx';
 import ProtectedRoute from './frontendLecturer/ProtectedRoute.jsx';
+import GetQrCode from './frontendLecturer/qrCode.jsx';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function AppRoutes() {
       <Route path='/eduRate/login' element={<Login onLoginSuccess={handleLoginSuccess} />} />
       <Route path='/eduRate/landing' element={<ProtectedRoute><Landing /></ProtectedRoute>} />
       <Route path='/eduRate/feedbackview/:lectureID' element={<ProtectedRoute><Feedbackview /></ProtectedRoute>} />
+      <Route path='/eduRate/qrCode/:lectureID' element={<ProtectedRoute><GetQrCode url={'/eduRate/'} /></ProtectedRoute>} />
     </Routes>
   );
 }
