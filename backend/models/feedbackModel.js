@@ -19,7 +19,7 @@ const lectureSchema = new mongoose.Schema(
 
 const feedbackSchema = new mongoose.Schema({
   lectureID: {
-    type: mongoose.Schema.Types.Number,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Lecture",
     required: true,
   },

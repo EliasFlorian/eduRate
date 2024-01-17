@@ -30,28 +30,6 @@ app.use(bodyParser.json());
 const { check, validationResult } = validator;
 app.use(express.json());
 
-const users = [
-  { id: 1, username: "user", password: "password" },
-  { id: 2, username: "lisa", password: "falter" },
-];
-
-const lectures = [
-  {
-    id: 1,
-    ort: "HTL",
-    date: "2019-01-01",
-    start: "13::55::26",
-    end: "17::55::26",
-  },
-  {
-    id: 2,
-    ort: "Gymnasium",
-    date: "2023-04-06",
-    start: "13::55::26",
-    end: "17::55::26",
-  },
-];
-
 const feedback = [
   { lectureID: 1, rankingCategory1: 3, rankingCategory2: 4, rankingCategory3: 3, rankingCategory4: 3, rankingCategory5: 3, feedback: "cool" },
   { lectureID: 2, rankingCategory1: 5, rankingCategory2: 6, rankingCategory3: 3, rankingCategory4: 2, rankingCategory5: 10, feedback: "nice" }
@@ -235,6 +213,28 @@ app.get("/feedback", (req, res) => {
   });
   res.json(result);
 });
+
+
+
+
+//delete lecture entry
+app.delete("/lecture/:id", async (req, res) => {
+  const lectureId = req.params.id;
+  try {
+      // find the lecture by ID and delete it
+      const result = await Lecture.findByIdAndDelete(lectureId);
+
+      if (result) {
+          res.status(200).send("Lecture deleted successfully");
+      } else {
+          res.status(404).send("Lecture not found");
+      }
+  } catch (error) {
+      console.error(error);
+      res.status(500).send(error.message);
+  }
+});
+
 
 
 // app.listen(PORT, () => {

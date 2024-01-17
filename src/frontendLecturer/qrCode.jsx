@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import LectureTable from './LectureTable';
+import { useParams } from 'react-router-dom';
 
-const lectureID = 12; //hard coded here
 
-function GetQrCode({url}) {
- 
-    var request = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${url}`
+function GetQrCode() {
+    let { lectureID } = useParams();
+    const url = `/eduRate/${lectureID}`;
+    const encodedUrl = encodeURIComponent(url);
+    var request = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedUrl}`
     
     return (
       <div>
-        <h2>Scanne den QR-Code oder gehe direkt auf folgende Seite: www.eduRate.at/{lectureID}</h2>
+        <h2>Scanne den QR-Code oder gehe direkt auf folgende Seite: {url}</h2>
         <div></div>
           <img src = {request} />
       </div>

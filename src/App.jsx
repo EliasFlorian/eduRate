@@ -29,14 +29,14 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route path='/eduRate' element={<RatingPage />} />
+      <Route path='/eduRate/:lectureID' element={<RatingPage />} />
       <Route path='/eduRate/RatingPage' element={<RatingPage />} />
       <Route path='/eduRate/SubmittedPage' element={<SubmittedPage />} />
       <Route path='*' element={<NoPage />} />
       <Route path='/eduRate/login' element={<Login onLoginSuccess={handleLoginSuccess} />} />
       <Route path='/eduRate/landing' element={<ProtectedRoute><Landing /></ProtectedRoute>} />
       <Route path='/eduRate/feedbackview/:lectureID' element={<ProtectedRoute><Feedbackview /></ProtectedRoute>} />
-      <Route path='/eduRate/qrCode/:lectureID' element={<ProtectedRoute><GetQrCode url={'/eduRate/'} /></ProtectedRoute>} />
+      <Route path='/eduRate/qrCode/:lectureID' element={<ProtectedRoute><GetQrCode /></ProtectedRoute>} />
     </Routes>
   );
 }

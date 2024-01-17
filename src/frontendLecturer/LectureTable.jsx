@@ -54,6 +54,28 @@ function LectureTable() {
 };
 
 
+const handleDelete = async (lectureID) => {
+  try {
+    const url = `http://localhost:3000/lecture/${lectureID}`;
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+
+    if (response.ok) {
+      // Remove the deleted lecture from the state
+      setLectures(lectures.filter(lecture => lecture._id !== lectureID));
+    } else {
+      throw new Error(`Failed to delete lecture. Status: ${response.status}`);
+    }
+  } catch (error) {
+    setError(error.message);
+  }
+};
+
     return (
       <Table className='table'>
         <thead>
@@ -64,21 +86,23 @@ function LectureTable() {
             <th>Uhrzeit</th>
             <th>Feedback</th>
             <th>QR Code</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
         {lectures.map((lecture) => (
-    <tr key={lecture.id}>
-      <td>{lecture.id}</td>
+    <tr key={lecture._id}>
+      <td>{lecture._id}</td>
       <td>{lecture.ort}</td>
       <td>{formatDate(lecture.datum)}</td>
       <td>{lecture.startzeit} - {lecture.endzeit}</td>
       <td>
-        <button className='viewFeedback' onClick={() => handleFeedbackview(lecture.id)}>
+        <button className='viewFeedback' onClick={() => handleFeedbackview(lecture._id)}>
           Feedback ansehen
         </button> </td> 
-      <td> <button className='viewFeedback' onClick={() => handleQRCode(lecture.id)}>QR Code anzeigen</button>
+      <td> <button className='viewFeedback' onClick={() => handleQRCode(lecture._id)}>QR Code anzeigen</button>
       </td>
+      <td> <button className='delete' onClick={() => handleDelete(lecture._id)}>Löschen</button></td>
     </tr>
   ))}
       </tbody>
