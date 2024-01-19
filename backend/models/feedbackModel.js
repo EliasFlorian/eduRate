@@ -18,16 +18,17 @@ const lectureSchema = new mongoose.Schema(
 );
 
 const feedbackSchema = new mongoose.Schema({
-  lectureID: {
+  /*lectureID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Lecture",
     required: true,
-  },
-  rankingCategory1: Number,
-  rankingCategory2: Number,
-  rankingCategory3: Number,
-  rankingCategory4: Number,
-  rankingCategory5: Number,
+  },*/
+  id: String,
+  rating1: Number,
+  rating2: Number,
+  rating3: Number,
+  rating4: Number,
+  rating5: Number,
   feedback: String,
 });
 

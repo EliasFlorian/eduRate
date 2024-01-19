@@ -31,7 +31,7 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route path='/eduRate/:lectureID' element={<RatingPage />} />
+      <Route path='/eduRate/feedback' element={<RatingPage />} />
       <Route path='/eduRate/RatingPage' element={<RatingPage />} />
       <Route path='/eduRate/SubmittedPage' element={<SubmittedPage />} />
       <Route path='*' element={<NoPage />} />

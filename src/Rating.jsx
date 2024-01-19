@@ -22,7 +22,7 @@ const inputStyle = {
         <div style={inputStyle}>
       <input
         type="range"
-        class="slider"
+        className="slider"
         min="0"
         max="10"
         value={rating}

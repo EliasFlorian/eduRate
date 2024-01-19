@@ -180,30 +180,42 @@ app.post(
   }
 );
 */
-app.post(
-  "/feedback",
+app.post("/feedback",
   [
-    check("lectureID").notEmpty(),
-    check("rankingCategory1").isInt({ min: 0, max: 10 }),
-    check("rankingCategory2").isInt({ min: 0, max: 10 }),
-    check("rankingCategory3").isInt({ min: 0, max: 10 }),
-    check("rankingCategory4").isInt({ min: 0, max: 10 }),
-    check("rankingCategory5").isInt({ min: 0, max: 10 }),
+    check("id").notEmpty(),
+    check("rating1").isInt({ min: 0, max: 10 }),
+    check("rating2").isInt({ min: 0, max: 10 }),
+    check("rating3").isInt({ min: 0, max: 10 }),
+    check("rating4").isInt({ min: 0, max: 10 }),
+    check("rating5").isInt({ min: 0, max: 10 }),
     check("feedback").notEmpty(),
-  ],
-  (req, res) => {
-    const result = validationResult(req);
+  ], 
+  async (req, res) => {
+    const result = validationResult(req.body.ratingsData);
 
     // check if form is valid
     if (result.isEmpty()) {
-      üp// TODO: feedback to database
-      feedback.push(req.body);
-      return res.send(feedback);
+      const { id, rating1, rating2, rating3, rating4, rating5, feedback } = req.body.ratingsData;
+      try {
+        // Create a new lecture document
+        const feed = new Feedback({
+          id, rating1, rating2, rating3, rating4, rating5, feedback
+        });
+    
+        // Save the lecture to the database
+        await feed.save();
+    
+        // Respond with success message
+        res.status(201).send("Feedback created successfully");
+      } catch (error) {
+        // If an error occurs, respond with the error message
+        console.error(error);
+        res.status(500).send(error.message);
+      }
     }
-
-    res.send({ errors: result.array() });
   }
 );
+
 
 app.get("/feedback", (req, res) => {
   // get feedback list from database
