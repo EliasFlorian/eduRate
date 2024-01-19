@@ -55,6 +55,10 @@ function LectureTable() {
 
 
 const handleDelete = async (lectureID) => {
+  const isConfirmed = window.confirm('Ganz sicher löschen?');
+  if (!isConfirmed) {
+    return;
+  }
   try {
     const url = `http://localhost:3000/lecture/${lectureID}`;
     const response = await fetch(url, {
