@@ -24,8 +24,8 @@ dotenv.config({ path: ".env.local" });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-//app.use("/", router);
 
+const admin = 'alex';
 
 const { check, validationResult } = validator;
 app.use(express.json());
@@ -135,14 +135,15 @@ app.get("/lectureList", async (req, res) => {
     const userID = tok.id;
     const lecturer = tok.username;
 
-    let lecture = await Lecture.find();
-    //console.log(lecture);
-    // should look fort the lecturerID instead of lecture ID, but field is not yet implemented
-    const result = lecture.filter(function (l) {
-      return l.lecturer == lecturer;
-    });
-    //console.log(result);
-    res.json(result);
+    let lecture = await Lecture.find({ ort: { $exists: true } });
+    console.log(lecture);
+    if(lecturer != admin) {
+      lecture = lecture.filter(function (l) {
+        return l.lecturer == lecturer;
+      });
+    }
+    console.log(lecture);
+    res.json(lecture);
   } catch (err) {
     console.log(err);
     res.status(401);

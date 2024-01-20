@@ -24,7 +24,7 @@ npm install
 For the Database connection, create a file called .env.local in /backend and copy following code to it:
 
 ```ruby
-MONGODB_URI="mongodb+srv://alex:3xZplPnvRjEveG4d@edurate-mongodb.laopmtu.mongodb.net/eduRate?retryWrites=true&w=majority"
+MONGODB_URI=
 JWT_SECRET=your_jwt_secret_here
 PORT=3000
 ```
