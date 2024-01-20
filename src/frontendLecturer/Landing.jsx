@@ -6,8 +6,16 @@ import LectureTable from './LectureTable';
 import Lectureform from './Lectureform';
 import { useState } from 'react';
 import Logout from './Logout';
+import AverageFeedback from './TotalRatings';
+//import {jwt_decode} from "jwt-decode";
+
 
 function Landing() {
+   // const token = localStorage.getItem('token'); // or however you store your token
+   // const decoded = jwt_decode(token);
+   // const lecturerID = decoded.lecturerID; 
+
+
     const [showForm, setShowForm] = useState(false); // State to control form visibility
 
     // Toggles the visibility of the form
@@ -41,6 +49,9 @@ function Landing() {
                     ) : (
                 <LectureTable />
                          )}
+                <AverageFeedback lecturerID={"alex"}></AverageFeedback>
+
+                         
 
         </div>
         
