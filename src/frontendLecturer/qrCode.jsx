@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 function GetQrCode() {
     let { lectureID } = useParams();
-    const url = `/eduRate/feedback?id=${lectureID}`;
+    const url = `http://localhost:5173/eduRate/feedback?id=${lectureID}`;
     const encodedUrl = encodeURIComponent(url);
     var request = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedUrl}`
     

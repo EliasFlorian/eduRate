@@ -30,10 +30,6 @@ app.use(bodyParser.json());
 const { check, validationResult } = validator;
 app.use(express.json());
 
-const feedback = [
-  { lectureID: 1, rankingCategory1: 3, rankingCategory2: 4, rankingCategory3: 3, rankingCategory4: 3, rankingCategory5: 3, feedback: "cool" },
-  { lectureID: 2, rankingCategory1: 5, rankingCategory2: 6, rankingCategory3: 3, rankingCategory4: 2, rankingCategory5: 10, feedback: "nice" }
-];
 
 //========================================================================================================================================================
 
@@ -133,7 +129,7 @@ app.post("/lecture", async (req, res) => {
 //========================================================================================================================================================
 
 app.get("/lectureList", async (req, res) => {
-  // check token?
+
   try {
     const tok = jwtDecode(req.headers.authorization);
     const userID = tok.id;
@@ -217,12 +213,13 @@ app.post("/feedback",
 );
 
 
-app.get("/feedback", (req, res) => {
+app.get("/feedback", async (req, res) => {
   // get feedback list from database
   const lectureID = req.query.lectureID;
-  const result = feedback.filter(function (p) {
-    return p.lectureID == lectureID;
-  });
+  //console.log(feedback);
+  const query = { id: lectureID };
+  const result = await Feedback.find(query);
+
   res.json(result);
 });
 
