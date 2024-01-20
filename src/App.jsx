@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import RatingPage from './RatingPage.jsx';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import SubmittedPage from './SubmittedPage.jsx';
 import NoPage from './NoPage.jsx';
 import Login from './frontendLecturer/Login.jsx';
@@ -34,6 +34,7 @@ function AppRoutes() {
 
   return (
     <Routes>
+      <Route path='/eduRate/' element={<Navigate to="/eduRate/login" replace />} />
       <Route path='/eduRate/feedback' element={<RatingPage />} />
       <Route path='/eduRate/RatingPage' element={<RatingPage />} />
       <Route path='/eduRate/SubmittedPage' element={<SubmittedPage />} />
