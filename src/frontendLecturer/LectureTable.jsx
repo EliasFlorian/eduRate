@@ -41,7 +41,7 @@ function LectureTable() {
   }
 
   if (!lectures.length) {
-    return <div>Loading lectures...</div>;
+    return <div>Du musst erst einen Vortrag anlegen!</div>;
   }
 
   const formatDate = (datum) => {
