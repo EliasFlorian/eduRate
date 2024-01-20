@@ -12,9 +12,15 @@ function Login ({ onLoginSuccess }) {
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); // Add this line
     const { setAccessToken } = useUser();
+    const { user } = useUser();
   
     const handleSubmit = async (event) => {
       event.preventDefault();
+      
+      if(user.name) {
+        alert('You are already logged in! Log out first!');
+        return;
+      }
   
       // Replace with your API call
       const response = await fetch('http://localhost:3000/login', {
@@ -31,7 +37,7 @@ function Login ({ onLoginSuccess }) {
         //localStorage.setItem('token', data.token); // Store the token
         setAccessToken(data.token);
         onLoginSuccess();
-        navigate('/eduRate/landing');
+        //navigate('/eduRate/landing');
       } else {
         alert('Ungültiger User!');
       }

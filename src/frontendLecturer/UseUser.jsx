@@ -28,7 +28,7 @@ export function UserProvider({ children }) {
   const [user, setUser] = useState({});
  
   function handleAccessTokenChange() {
-    if (!user.name && accessToken) {
+    if (accessToken) {
       localStorage.setItem('token', accessToken);
       const user = getCurrentUser(accessToken);
       setUser(user);
