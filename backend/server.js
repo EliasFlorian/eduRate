@@ -217,13 +217,11 @@ app.post("/feedback",
 );
 
 
-app.get("/feedback", (req, res) => {
+app.get("/feedback", async (req, res) => {
   // get feedback list from database
-  const lectureID = req.query.lectureID;
-  const result = feedback.filter(function (p) {
-    return p.lectureID == lectureID;
-  });
-  res.json(result);
+  const id = req.query.id;
+  const feedbacks = await Feedback.find({ id: id });
+  res.json(feedbacks);
 });
 
 

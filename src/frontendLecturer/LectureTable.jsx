@@ -46,13 +46,10 @@ function LectureTable() {
 
   const formatDate = (datum) => {
     if (!datum || typeof datum !== 'string') {
-        return 'Datum nicht verfügbar';
-    }
-
+        return 'Datum nicht verfügbar';}
     const parts = datum.split('-');
     return `${parts[2]}.${parts[1]}.${parts[0]}`;
 };
-
 
 const handleDelete = async (lectureID) => {
   const isConfirmed = window.confirm('Ganz sicher löschen?');
