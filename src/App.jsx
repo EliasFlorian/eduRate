@@ -11,13 +11,16 @@ import ProtectedRoute from './frontendLecturer/ProtectedRoute.jsx';
 import GetQrCode from './frontendLecturer/qrCode.jsx';
 import LandingAdmin from './frontendAdmin/LandingAdmin.jsx';
 import NewUser from './frontendAdmin/NewUser.jsx';
+import { UserProvider } from './frontendLecturer/UseUser.jsx';
 
 function App() {
   return (
     <div>
+      <UserProvider>
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
+      </UserProvider>
     </div>
   );
 }

@@ -3,11 +3,15 @@ import './Lecturer.css';
 import logoweiss from '../images/logoweiss.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import NavBar from './NavBar';
+import { UserProvider } from './UseUser';
+import { useUser } from './UseUser';
 
 function Login ({ onLoginSuccess }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); // Add this line
+    const { setAccessToken } = useUser();
   
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -24,7 +28,8 @@ function Login ({ onLoginSuccess }) {
   
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('token', data.token); // Store the token
+        //localStorage.setItem('token', data.token); // Store the token
+        setAccessToken(data.token);
         onLoginSuccess();
         navigate('/eduRate/landing');
       } else {
@@ -36,9 +41,7 @@ function Login ({ onLoginSuccess }) {
   return (
     <div className="login-page">
       {/* Navigation Bar */}
-      <nav className="nav-bar">
-      <img src={logoweiss} className='logoweiss' alt="OEHLogo" />
-      </nav>
+      <NavBar />
       
       {/* Login Form */}
       <div className="login-form-container">

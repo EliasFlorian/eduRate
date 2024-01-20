@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import { useUser } from './UseUser';
 
 function Logout() {
     let navigate = useNavigate();
+    const { user, setAccessToken } = useUser();
 
     const handleLogout = () => {
-        
-        localStorage.removeItem('token');
+        setAccessToken(null);
+        //localStorage.removeItem('token');
         navigate('/eduRate/login');
     };
 

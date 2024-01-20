@@ -6,6 +6,7 @@ import LectureTable from './LectureTable';
 import Lectureform from './Lectureform';
 import { useState } from 'react';
 import Logout from './Logout';
+import NavBar from './NavBar';
 
 function Landing() {
     const [showForm, setShowForm] = useState(false); // State to control form visibility
@@ -23,10 +24,7 @@ function Landing() {
         <div className="rootpage">
         <div className="landing-page">
         {/* Navigation Bar */}
-        <nav className="nav-bar">
-        <img src={logoweiss} className='logoweiss' alt="OEHLogo" />
-        <Logout></Logout>
-        </nav>
+        <NavBar />
         {!showForm && (
                     <button type="button" id='new-entry' onClick={handleNewEntry}>Neuen Vortrag anlegen</button>
                 )}
