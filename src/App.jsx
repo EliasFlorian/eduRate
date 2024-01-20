@@ -12,6 +12,8 @@ import GetQrCode from './frontendLecturer/qrCode.jsx';
 import LandingAdmin from './frontendAdmin/LandingAdmin.jsx';
 import NewUser from './frontendAdmin/NewUser.jsx';
 import { UserProvider } from './frontendLecturer/UseUser.jsx';
+import { useUser } from './frontendLecturer/UseUser.jsx';
+
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
 
 function AppRoutes() {
   let navigate = useNavigate();
+  const { user } = useUser();
 
   const handleLoginSuccess = () => {
     navigate('/eduRate/landing');
@@ -34,7 +37,7 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route path='/eduRate/' element={<Navigate to="/eduRate/login" replace />} />
+      <Route path='/eduRate/' element={user.name ? <Navigate to="/eduRate/landing" replace /> : <Navigate to="/eduRate/login" replace />} />
       <Route path='/eduRate/feedback' element={<RatingPage />} />
       <Route path='/eduRate/RatingPage' element={<RatingPage />} />
       <Route path='/eduRate/SubmittedPage' element={<SubmittedPage />} />

@@ -145,6 +145,11 @@
   font-family: "RedHatDisplay-Bold";
 }
 
+.welcomeText {
+  padding: 1rem;
+  font-size: x-large;
+}
+
 label {
   display: block;
   margin-bottom: 10px;

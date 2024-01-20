@@ -6,6 +6,7 @@ import Logout from "./Logout";
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar";
 
 
 function Feedbackview () {
@@ -71,17 +72,20 @@ function Feedbackview () {
     return <div>Error: {error}</div>;
   }
 
-  if (!feedback) {
-    return <div>Du hast noch keinen Vortrag eingetragen!</div>;
+  if (!feedback[0]) {
+    return(
+      <div className="feedback-view">
+        <NavBar />
+        <h3>Du hast noch kein Feeddback erhalten</h3>
+        <button className='logout-button' onClick={handleBack}>Zurück</button>
+      </div>
+    )
   }
 
     return (
       <div className="feedback-view">
         {/* Navigation Bar */}
-        <nav className="nav-bar">
-        <img src={logoweiss} className='logoweiss' alt="OEHLogo" />
-        <Logout></Logout>
-        </nav>
+        <NavBar />
         <h3>Vortrag Nr.: {lectureID}</h3>
         <h3>Anzahl der Bewertungen: {feedback.length}</h3>
         <Table className='table'>

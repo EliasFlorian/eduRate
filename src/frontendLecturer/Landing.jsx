@@ -11,6 +11,7 @@ import { useUser } from './UseUser';
 //import {jwt_decode} from "jwt-decode";
 
 import NavBar from './NavBar';
+import WelcomeText from './WelcomeText';
 
 function Landing() {
    // const token = localStorage.getItem('token'); // or however you store your token
@@ -40,7 +41,7 @@ function Landing() {
         </div>
         <div></div>
 
-        <h1>{showForm ? "Neuer Vortrag" : "Meine Vorträge"}</h1>
+        <h1>{showForm ? "Neuer Vortrag" : "Alle Vorträge"}</h1>
         <div></div>
 
         {showForm ? (
@@ -48,7 +49,8 @@ function Landing() {
                     ) : (
                 <LectureTable />
                          )}
-                <AverageFeedback lecturerID={user.name}></AverageFeedback>
+                {user.admin ? <div></div> : <AverageFeedback lecturerID={user.name}></AverageFeedback>}
+                
 
                          
 
