@@ -2,16 +2,14 @@ import { useState } from 'react'
 import './App.css'
 import Rating from './Rating.jsx'
 import logo from './images/logo.png'
-import FeedbackField from './FeedbackField.jsx'
 import { useParams } from 'react-router-dom';
-import { useRef } from 'react'
-
+import { useNavigate } from 'react-router-dom';
 
 
 function RatingPage() {
-
+  const navigate = useNavigate();
   const { lectureID } = useParams();
-  
+
   const [rating1, setRating1] = useState(0);
   const [rating2, setRating2] = useState(0);
   const [rating3, setRating3] = useState(0);
@@ -44,8 +42,6 @@ function RatingPage() {
     setFeedback(event.target.value);
   }
 
-   
-  // window.location.href = '/eduRate/SubmittedPage';
 
 
   const handleSubmission = async (event) => {
@@ -79,6 +75,11 @@ function RatingPage() {
       },
       body: JSON.stringify({ ratingsData }),
     });
+    if (response.ok) {
+      navigate('/eduRate/SubmittedPage');
+    } else {
+      console.error('Submission failed');
+    }
 };
 
   return (
@@ -115,7 +116,6 @@ function RatingPage() {
       </div>
     </>
   )
-
 }
 
 export default RatingPage;

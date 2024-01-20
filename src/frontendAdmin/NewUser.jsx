@@ -7,7 +7,7 @@ function NewUser() {
         username: '',
         password: ''
       });
-      
+
       const handleChange = (event) => {
         setFormData({
           ...formData,
@@ -32,6 +32,9 @@ function NewUser() {
         });
         if (response.ok) {
             navigate('/edurate/landingadmin'); }
+        else {
+            alert("User existiert bereits!")
+        }
     };
     
     

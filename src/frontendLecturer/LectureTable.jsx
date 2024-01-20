@@ -41,18 +41,15 @@ function LectureTable() {
   }
 
   if (!lectures.length) {
-    return <div>Loading lectures...</div>;
+    return <div>Du musst erst einen Vortrag anlegen!</div>;
   }
 
   const formatDate = (datum) => {
     if (!datum || typeof datum !== 'string') {
-        return 'Datum nicht verfügbar';
-    }
-
+        return 'Datum nicht verfügbar';}
     const parts = datum.split('-');
     return `${parts[2]}.${parts[1]}.${parts[0]}`;
 };
-
 
 const handleDelete = async (lectureID) => {
   const isConfirmed = window.confirm('Ganz sicher löschen?');

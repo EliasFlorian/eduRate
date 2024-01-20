@@ -215,14 +215,44 @@ app.post("/feedback",
 
 app.get("/feedback", async (req, res) => {
   // get feedback list from database
-  const lectureID = req.query.lectureID;
-  //console.log(feedback);
-  const query = { id: lectureID };
-  const result = await Feedback.find(query);
-
-  res.json(result);
+  const id = req.query.id;
+  const feedbacks = await Feedback.find({ id: id });
+  res.json(feedbacks);
 });
 
+
+app.get("/feedbacktotal", async (req, res) => {
+  try {
+    const lecturer = req.query.lecturer;
+    if (!lecturer) {
+      return res.status(400).send("Lecturer ID is required");
+    }
+
+    const lectures = await Lecture.find({ lecturer: lecturer }).select('_id');
+    const feedbacks = await Feedback.find({ id: { $in: lectures.map(lecture => lecture._id.toString()) } });
+
+    let totals = { rating1: 0, rating2: 0, rating3: 0, rating4: 0, rating5: 0 };
+    let counts = { rating1: 0, rating2: 0, rating3: 0, rating4: 0, rating5: 0 };
+
+    feedbacks.forEach(feedback => {
+      Object.keys(totals).forEach(key => {
+        if (feedback[key] != null) {
+          totals[key] += feedback[key];
+          counts[key]++;
+        }
+      });
+    });
+
+    let averages = {};
+    Object.keys(totals).forEach(key => {
+      averages[key] = counts[key] > 0 ? (totals[key] / counts[key]).toFixed(2) : 'N/A';
+    });
+
+    res.json({ averages });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 
 
