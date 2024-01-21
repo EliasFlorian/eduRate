@@ -9,6 +9,7 @@ import Logout from './Logout';
 import AverageFeedback from './TotalRatings';
 import { useUser } from './UseUser';
 import NavBar from './NavBar';
+import WelcomeText from './WelcomeText';
 
 function Landing() {
    const { user } = useUser();
@@ -35,7 +36,7 @@ function Landing() {
         </div>
         <div></div>
 
-        <h1>{showForm ? "Neuer Vortrag" : "Meine Vorträge"}</h1>
+        <h1>{showForm ? "Neuer Vortrag" : "Alle Vorträge"}</h1>
         <div></div>
 
         {showForm ? (

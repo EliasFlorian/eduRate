@@ -45,6 +45,31 @@ You can now connect to EduRate via http://localhost:5173/eduRate/login
 
 ## How to use EduRate
 
+## MoSCow Criteria
+
+### Must requirements
+
+1. The system shall provide the lecturer with the ability to create a new lecture entry. The system shall create a new lecture URL for each lecture entry.
+1. The system shall provide the audience member with the ability to access the feedback page via a given lecture URL.
+1. The system shall provide the audience member with the ability to write feedback for the lecturer.
+1. The system shall provide the lecturer with the ability to display a list of their lecture entries.
+1. The system shall provide the lecturer with the ability to display the feedback for each of his/her own lectures.
+
+### Should requirements
+
+1. The system should provide the lecturer with the ability to log into their lecturer account.
+1. The system should provide the lecturer with the ability to receive an average rating on predefined aspects.
+1. The system should provide a QR code corresponding to the lecture URL. The system should provide the audience member with the ability to rate the lecturer on predefined aspects.
+
+### Could requirements
+
+1. The system could provide the lecturer with the ability to display the total average ratings.
+1. The system could provide the administrator with the ability to display the feedback and ratings of all lecturers.
+
+### Won’t requirements
+
+1. The system will not be compatible with any existing appointment management tools used by the ÖH.
+
 ## Authors
 
 - **Damisch Elias** - _Coordinator_
