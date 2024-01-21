@@ -47,7 +47,7 @@ function Landing() {
         {showForm ? (
                 <div></div>
                     ):(
-            <AverageFeedback lecturerID={user.name}></AverageFeedback>
+                        user.admin ? <div></div> : <AverageFeedback lecturerID={user.name}></AverageFeedback>
         )}
         </div>
         

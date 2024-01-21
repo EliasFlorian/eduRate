@@ -81,7 +81,7 @@ const handleDelete = async (lectureID) => {
       <Table className='table'>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>User</th>
             <th>Ort</th>
             <th>Datum</th>
             <th>Uhrzeit</th>
@@ -93,7 +93,7 @@ const handleDelete = async (lectureID) => {
         <tbody>
         {lectures.map((lecture) => (
     <tr key={lecture._id}>
-      <td>{lecture._id}</td>
+      <td>{lecture.lecturer}</td>
       <td>{lecture.ort}</td>
       <td>{formatDate(lecture.datum)}</td>
       <td>{lecture.startzeit} - {lecture.endzeit}</td>

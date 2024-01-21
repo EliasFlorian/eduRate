@@ -76,7 +76,7 @@ function Feedbackview () {
     return(
       <div className="feedback-view">
         <NavBar />
-        <h3>Du hast noch kein Feeddback erhalten</h3>
+        <h3>Du hast noch kein Feedback erhalten</h3>
         <button className='logout-button' onClick={handleBack}>Zurück</button>
       </div>
     )
