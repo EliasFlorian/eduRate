@@ -139,8 +139,8 @@ app.get("/lectureList", async (req, res) => {
     console.log(lecture);
     if(lecturer != admin) {
       lecture = lecture.filter(function (l) {
-        return l.lecturer == lecturer;
-      });
+      return l.lecturer == lecturer;
+    });
     }
     console.log(lecture);
     res.json(lecture);

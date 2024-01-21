@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../frontendLecturer/NavBar";
 
 function NewUser() {
     const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ function NewUser() {
             password: formData.password }),
         });
         if (response.ok) {
-            navigate('/edurate/landingadmin'); }
+            navigate('/edurate/landing'); }
         else {
             alert("User existiert bereits!")
         }
@@ -39,6 +40,7 @@ function NewUser() {
     
     
       return (
+        <div><NavBar></NavBar>
         <form onSubmit={handleSubmit}>
           <div className='form-group'>
             <label htmlFor="username">Username: </label>
@@ -63,11 +65,9 @@ function NewUser() {
               onChange={handleChange}
             />
           </div>
-
           <button type="submit" onClick={handleSubmit}>Neuen User erstellen</button>
         </form>
-      );
+      </div>);
     }
-
 
 export default NewUser

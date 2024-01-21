@@ -7,6 +7,7 @@ import Lectureform from './Lectureform';
 import { useState } from 'react';
 import Logout from './Logout';
 import { useUser } from './UseUser.jsx';
+import LandingAdmin from '../frontendAdmin/LandingAdmin.jsx';
 
 
 function NavBar() {
@@ -16,6 +17,7 @@ function NavBar() {
     return(
         <nav className="nav-bar">
         <img src={logoweiss} className='logoweiss' alt="OEHLogo" />
+        {user.admin? <LandingAdmin/> : <div />}
         {
         user.name? <Logout /> : <div />
         }

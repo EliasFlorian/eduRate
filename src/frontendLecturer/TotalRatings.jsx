@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
 
 function AverageFeedback({ lecturerID }) {
     const [averages, setAverages] = useState(null);
@@ -31,15 +32,42 @@ function AverageFeedback({ lecturerID }) {
     if (!averages) {
         return <div>Loading averages...</div>;
     }
-
+    
     return (
+        <div style={{ marginTop: '3em' }}> 
         <div>
             <h2>Mein Gesamtrating</h2>
-            <p>Rating 1: {averages.rating1}</p>
-            <p>Rating 2: {averages.rating2}</p>
-            <p>Rating 3: {averages.rating3}</p>
-            <p>Rating 4: {averages.rating4}</p>
-            <p>Rating 5: {averages.rating5}</p>
+            <Table className='table'>
+      <thead className="tablehead">
+        <tr>
+          <th>Ratingkategorie</th>
+          <th>Rating Durchschnitt</th>
+        </tr>
+      </thead>
+      <tbody className="tableview">
+            <tr>
+              <td>Ich habe viel Neues erfahren.</td>
+              <td>{averages.rating1}</td>
+            </tr>
+            <tr>
+              <td>Die Inhalte wurden verständlich vermittelt.</td>
+              <td>{averages.rating2}</td>
+            </tr>
+            <tr>
+              <td>Der/die Vortragende wirkt kompetent.</td>
+              <td>{averages.rating3}</td>
+            </tr>
+            <tr>
+              <td>Ich weiß jetzt, wie ich mein Wunschstudium finde.</td>
+              <td>{averages.rating4}</td>
+            </tr>
+            <tr>
+              <td>Die Präsentationsfolien waren ansprechend gestaltet.</td>
+              <td>{averages.rating5}</td>
+            </tr>
+      </tbody>
+    </Table>
+        </div>
         </div>
     );
 }
