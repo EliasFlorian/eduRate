@@ -44,12 +44,22 @@ npm start
 You can now connect to EduRate via http://localhost:5173/eduRate/login
 
 ## How to use EduRate
+Accounts to access EduRate for testing:
+Admin-User:
+Username: alex
+Password: test
+
+User:
+Username: lisa.falter
+Password: test
+
 
 ## MoSCow Criteria
 
 ### Must requirements
 
-1. The system shall provide the lecturer with the ability to create a new lecture entry. The system shall create a new lecture URL for each lecture entry.
+1. The system shall provide the lecturer with the ability to create a new lecture entry. 
+1. The system shall create a new lecture URL for each lecture entry.
 1. The system shall provide the audience member with the ability to access the feedback page via a given lecture URL.
 1. The system shall provide the audience member with the ability to write feedback for the lecturer.
 1. The system shall provide the lecturer with the ability to display a list of their lecture entries.
@@ -59,7 +69,8 @@ You can now connect to EduRate via http://localhost:5173/eduRate/login
 
 1. The system should provide the lecturer with the ability to log into their lecturer account.
 1. The system should provide the lecturer with the ability to receive an average rating on predefined aspects.
-1. The system should provide a QR code corresponding to the lecture URL. The system should provide the audience member with the ability to rate the lecturer on predefined aspects.
+1. The system should provide a QR code corresponding to the lecture URL. 
+1. The system should provide the audience member with the ability to rate the lecturer on predefined aspects.
 
 ### Could requirements
 
