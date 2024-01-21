@@ -17,10 +17,13 @@ function NavBar() {
     return(
         <nav className="nav-bar">
         <img src={logoweiss} className='logoweiss' alt="OEHLogo" />
+        <div>
+        <div className="button-bars">
         {user.admin? <LandingAdmin/> : <div />}
         {
         user.name? <Logout /> : <div />
-        }
+        }</div>
+        </div>
         </nav>
     )
 }

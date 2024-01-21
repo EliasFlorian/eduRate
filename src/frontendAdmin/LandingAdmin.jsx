@@ -10,7 +10,7 @@ function LandingAdmin() {
 
     return(
 <div>
-    <button className="viewFeedback" onClick={navNewUser}>Neuen User anlegen</button>
+    <button className="logout-button" onClick={navNewUser}>Neuen User anlegen</button>
 </div>)
 }
 export default LandingAdmin

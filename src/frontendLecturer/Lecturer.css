@@ -94,7 +94,7 @@
   }
 
   .logout-button {
-    width: 15%;
+    width: auto;
   }
 
   .eduRate {
@@ -152,4 +152,10 @@ label {
 
 input {
   width: 100%;
+}
+
+.button-bars {
+  display: flex;
+  
+ 
 }
